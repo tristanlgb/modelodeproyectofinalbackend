@@ -1,0 +1,44 @@
+<div>
+    {{!-- <h1>Hola {{user.firstName}} {{user.lastName}}! Bienvenido a Logic-Work!</h1>
+    {{#if user}}
+        <h3>email: {{user.email}}</h3>
+        <h3>Tipo de Usuario: {{user.role}}</h3>
+    {{/if}} --}}
+    <h1>Bienvenido a Logic-Work!</h1>
+    <div class="cards">
+        <table class="estilo">
+            <tr>
+                <th>nombre</th>
+                <th>apellido</th>
+                <th>email</th>
+                <th>role</th>
+                <th>lastConnection</th>
+                <th>Cambiar rol</th>
+                <th>Borrar usuario</th>
+            </tr>
+            {{#each users}}
+                <tr>
+                    <td>{{this.firstName}}</td>
+                    <td>{{this.lastName}}</td>
+                    <td>{{this.email}}</td>
+                    <td>{{this.role}}</td>
+                    <td>{{this.lastConnection}}</td>
+                    <td><form action="/api/users/premium/{{this._id}}" method="get"><button>cambiar rol</button></form></td>
+                    <td><form id="borrarUsuario{{this._id}}" data-user-id="{{this._id}}" data-user-rol="{{this.role}}"><button
+                                class="borrarUsuario"
+                            >borrar usuario</button></form></td>
+                </tr>
+            {{/each}}
+        </table>
+    </div>
+    <center>
+        {{#if hasPrevPage}}
+            <a href="/products?page={{prevPage}}"><button>anterior</button></a>
+        {{/if}}
+        {{#if hasNextPage}}
+            <a href="/products?page={{nextPage}}"><button>Siguiente</button></a>
+        {{/if}}
+    </center>
+</div>
+
+<script src="/static/js/adminUsers.js"></script>
